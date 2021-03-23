@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bluetooth_list_cilckable_white"
+    android:clickable="true"
+    android:padding="12dp"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/colorBlackgray_Text_Style_14"
+        android:id="@+id/device_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="11019" />
+
+</RelativeLayout>

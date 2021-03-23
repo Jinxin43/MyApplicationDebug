@@ -1,0 +1,12 @@
+<resources>
+    <style name="colorBlackgray_Text_Style_14">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorBlackgray</item>
+    </style>
+
+    <style name="White_Text_Style_14">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+</resources>

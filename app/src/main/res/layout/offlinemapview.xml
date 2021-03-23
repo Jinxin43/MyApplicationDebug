@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_map"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible" >
+
+    <com.tianditu.android.maps.MapView
+        android:id="@+id/layout_mapview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:gravity="right"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/btn_lon"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:hint="经度" />
+
+            <EditText
+                android:id="@+id/btn_lat"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:hint="纬度" />
+
+            <EditText
+                android:id="@+id/btn_scale"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:hint="比例尺" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_moveto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="move to" />
+    </LinearLayout>
+
+</FrameLayout>

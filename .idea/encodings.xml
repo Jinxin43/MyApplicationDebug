@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="GBK" addBOMForNewFiles="with NO BOM">
+    <file url="file://$PROJECT_DIR$/app/build.gradle" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/libs/HailiaoSDK2.5.jar" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/dingtu2/myapplication/BlueTooth/BeiDouBaoWen.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/dingtu2/myapplication/BlueTooth/BeidouMessageAdapter.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/dingtu2/myapplication/BlueTooth/BluetoothDeviceAdapter.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/dingtu2/myapplication/BlueTooth/Msg.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/dingtu2/myapplication/BlueTooth/MsgDB.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/dingtu2/myapplication/BlueTooth/v1_FormTemplate.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/dingtu2/myapplication/BlueTooth/v1_UserConfigDB_UserParam.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/dingtu2/myapplication/View/GuanHuZhiDuActivity.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/dingtu2/myapplication/model/BindModel.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/example/dingtu2/myapplication/model/UnBindModel.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_record.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_beidoubaowen.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_sendbeidoumsg.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/l_dialogtemplate.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/msg_item_list.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/mapcontainer/build.gradle" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/mapcontainer/libs/jxl.jar" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/mapcontainer/src/main/java/com/DingTu/Controls/ListViewForScrollView.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/mapcontainer/src/main/res/drawable/button_default.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/mapcontainer/src/main/res/drawable/button_transparent_all.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/mapcontainer/src/main/res/drawable/buttonstyle.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/mapcontainer/src/main/res/drawable/buttonstyle_transparent_all.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/mapcontainer/src/main/res/drawable/checkbox_style.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/mapcontainer/src/main/res/drawable/circletextview.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/mapcontainer/src/main/res/drawable/edittext_flat.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/mapcontainer/src/main/res/drawable/edittext_focused.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/mapcontainer/src/main/res/drawable/edittextstyle.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/mapcontainer/src/main/res/drawable/numberpicker_down_btn.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/mapcontainer/src/main/res/drawable/seekbar_style.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/mapcontainer/src/main/res/drawable/togglebuttonstyle.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/mapcontainer/src/main/res/drawable/v1_messageinfo.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/mapcontainer/src/main/res/layout/v1_bk_head_splitbar.xml" charset="GBK" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

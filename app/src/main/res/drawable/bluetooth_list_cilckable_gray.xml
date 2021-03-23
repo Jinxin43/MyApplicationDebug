@@ -1,0 +1,8 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--点击后-->
+    <item android:drawable="@color/white" android:state_pressed="true"></item>
+
+    <!--点击前-->
+    <item android:drawable="@color/colorGrayContact_letter" android:state_pressed="false" android:state_selected="false"></item>
+
+</selector>

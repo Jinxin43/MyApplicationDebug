@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/colorBlackgray_Text_Style_14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:background="@color/white"
+                android:text="请点击您的盒子ID进行连接"
+                android:gravity="center"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#ffd4d4d4" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/device_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white" />
+
+            <Button
+                android:background="@color/colorPrimary"
+                android:id="@+id/cancel_btn"
+                style="@style/White_Text_Style_14"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="取消" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
