@@ -1053,15 +1053,15 @@ public class MainActivityBackup extends AppCompatActivity
         _BKLayerExplorer.OpenBKDataSource();
 
         //读取工程的上次视图范围，如果没有则全图显示
-        Envelope pEnv = _ProjectExplorer.ReadShowExtend();
-        if (pEnv != null) {
-            PubVar.m_MapControl.setActiveTool(com.DingTu.mapcontainer.Tools.FullScreenSize);
-            PubVar.m_Map.setExtend(pEnv);
-//            PubVar.m_Map.Refresh();
-        } else {
-            PubVar.m_MapControl.setActiveTool(com.DingTu.mapcontainer.Tools.FullScreen);
-        }
-
+//        Envelope pEnv = _ProjectExplorer.ReadShowExtend();
+//        if (pEnv != null) {
+//            PubVar.m_MapControl.setActiveTool(com.DingTu.mapcontainer.Tools.FullScreenSize);
+//            PubVar.m_Map.setExtend(pEnv);
+////            PubVar.m_Map.Refresh();
+//        } else {
+//            PubVar.m_MapControl.setActiveTool(com.DingTu.mapcontainer.Tools.FullScreen);
+//        }
+        PubVar.m_MapControl.setActiveTool(com.DingTu.mapcontainer.Tools.FullScreen);
         PubVar.m_Map.Refresh();
         PubVar.m_MapControl.setActiveTool(ZoomInOutPan);
 

@@ -69,7 +69,8 @@ public class MyService extends Service {
             String channelId = createNotificationChannel("my_service", "My Background Service");
             notificationBuilder = new NotificationCompat.Builder(this, channelId);
             notification = notificationBuilder.setAutoCancel(true)
-                    .setContentText("“巡护系统”正在运行")
+                    .setContentTitle("巡护系统")
+                    .setContentText("正在运行中")
                     .setSmallIcon(R.mipmap.ic_launcher)
                     .setPriority(PRIORITY_MIN)
                     .setCategory(Notification.CATEGORY_SERVICE)

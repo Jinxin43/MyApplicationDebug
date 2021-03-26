@@ -18,9 +18,11 @@ public class DriverRouteData {
     private List<LatLng> mDriverLatList;
     private List<Coordinate> mDriverList;
     private LatLng mLat;
+    private List<LatLng> mResult;
 
-    public void setData(DrivingRouteLine driverRouteLine) {
+    public void setData(DrivingRouteLine driverRouteLine, List<LatLng> mResult) {
         this.mDriverRouteLine = driverRouteLine;
+        this.mResult=mResult;
         mDriverLatList = new ArrayList<LatLng>();
         mDriverList = new ArrayList<Coordinate>();
     }
@@ -37,6 +39,7 @@ public class DriverRouteData {
         if (mDriverRouteLine == null) {
             return null;
         }
+        mDriverLatList.add(mResult.get(0));
         //起点标注
         if (mDriverRouteLine.getStarting() != null) {
             mLat = mDriverRouteLine.getStarting().getLocation();
@@ -88,6 +91,8 @@ public class DriverRouteData {
             mLat = mDriverRouteLine.getTerminal().getLocation();
             mDriverLatList.add(mLat);
         }
+
+        mDriverLatList.add(mResult.get(1));
 
         for (int i = 0; i < mDriverLatList.size(); i++) {
             Gps gps = gcj_To_Gps84(mDriverLatList.get(i).latitude, mDriverLatList.get(i).longitude);

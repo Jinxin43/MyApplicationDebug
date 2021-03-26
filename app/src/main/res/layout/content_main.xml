@@ -165,32 +165,51 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:visibility="gone">
+<!--        <Button-->
+<!--            android:id="@+id/btnMoveScreen"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="4dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@drawable/button_green"-->
+<!--            android:drawableTop="@drawable/icon_d_move"-->
+<!--            android:paddingTop="3dp"-->
+<!--            android:tag="移屏"-->
+<!--            android:text="移屏"-->
+<!--            android:textColor="#dbeedc"-->
+<!--            android:textSize="10dp" />-->
+
         <Button
             android:id="@+id/btnFullScreen"
-            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableTop="@drawable/icon_d_full"
-            android:textColor="#dbeedc"
-            android:textSize="10dp"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
             android:background="@drawable/button_green"
+            android:drawableTop="@drawable/icon_d_full"
             android:paddingTop="3dp"
             android:tag="全屏"
             android:text="全屏"
-            android:layout_margin="4dp"/>
+            android:textColor="#dbeedc"
+            android:textSize="10dp" />
+
+
         <Button
             android:id="@+id/btnSelectDraw"
-            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableTop="@drawable/index_choose"
-            android:textColor="#dbeedc"
-            android:textSize="10dp"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
             android:background="@drawable/button_green"
-            android:tag="选择"
-            android:text="选择"
+            android:drawableTop="@drawable/index_choose"
             android:paddingTop="3dp"
-            android:layout_margin="4dp"/>
+            android:tag="选择"
+            android:text="测量"
+            android:textColor="#dbeedc"
+            android:textSize="10dp" />
+
+
+
 
         <Button
             android:id="@+id/btnStartRound"

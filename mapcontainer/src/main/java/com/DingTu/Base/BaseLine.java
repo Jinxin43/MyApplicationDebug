@@ -68,14 +68,18 @@ public class BaseLine implements IOnPaint {
             //绘制单个节点
             Paint pBrush = new Paint();
             pBrush.setStrokeWidth(Tools.DPToPix(5));
-            if (i == 0) pBrush.setColor(Color.GREEN);  //起
-            canvas.drawCircle(PList[0].x, PList[0].y, H / 2, pBrush);
-            if (i == PList.length - 1) pBrush.setColor(Color.YELLOW);  //终
-            canvas.drawCircle(PList[PList.length - 1].x, PList[PList.length - 1].y, H / 2, pBrush);
+            if(i==0){
+                pBrush.setColor(Color.GREEN);  //起
+                canvas.drawCircle(PList[0].x, PList[0].y, H / 2, pBrush);
+            }
+            if (i == PList.length - 1) {
+                pBrush.setColor(Color.YELLOW);  //终
+                canvas.drawCircle(PList[PList.length - 1].x, PList[PList.length - 1].y, H / 2, pBrush);
+            }
             //if (i > 0 && i < PList.length - 1) pBrush.setColor(Color.RED);
 //            canvas.drawCircle(PList[i].x, PList[i].y, H / 2, pBrush);
             pBrush.setStyle(Paint.Style.STROKE);
-            pBrush.setColor(Color.BLUE);
+//            pBrush.setColor(Color.BLUE);
             pBrush.setAlpha(128);
             pBrush.setStrokeWidth(Tools.DPToPix(2));
 //            canvas.drawCircle(PList[i].x, PList[i].y, H / 2, pBrush);

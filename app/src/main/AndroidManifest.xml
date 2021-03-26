@@ -254,7 +254,8 @@
         <activity android:name=".PatrolManagerActivity"
             android:launchMode="singleTask"/>
         <service android:name=".JPush.MyService"
-            android:priority="1000"/>
+            android:priority="1000"
+            android:process=":remote"/>
         <activity android:name=".Video.VideoRecordActivity"/>
     </application>
 

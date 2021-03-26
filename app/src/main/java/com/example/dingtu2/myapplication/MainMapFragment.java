@@ -70,7 +70,6 @@ import com.baidu.mapapi.NetworkUtil;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.search.core.RouteLine;
 import com.baidu.mapapi.search.core.SearchResult;
-import com.baidu.mapapi.search.route.BikingRouteLine;
 import com.baidu.mapapi.search.route.BikingRouteResult;
 import com.baidu.mapapi.search.route.DrivingRouteLine;
 import com.baidu.mapapi.search.route.DrivingRoutePlanOption;
@@ -81,9 +80,7 @@ import com.baidu.mapapi.search.route.MassTransitRouteResult;
 import com.baidu.mapapi.search.route.OnGetRoutePlanResultListener;
 import com.baidu.mapapi.search.route.PlanNode;
 import com.baidu.mapapi.search.route.RoutePlanSearch;
-import com.baidu.mapapi.search.route.TransitRouteLine;
 import com.baidu.mapapi.search.route.TransitRouteResult;
-import com.baidu.mapapi.search.route.WalkingRouteLine;
 import com.baidu.mapapi.search.route.WalkingRouteResult;
 import com.baidu.mapapi.search.sug.OnGetSuggestionResultListener;
 import com.baidu.mapapi.search.sug.SuggestionResult;
@@ -98,7 +95,6 @@ import com.example.dingtu2.myapplication.BlueTooth.BeiDouBaoWen;
 import com.example.dingtu2.myapplication.RouteData.DriverRouteData;
 import com.example.dingtu2.myapplication.View.PagingScrollHelper;
 import com.example.dingtu2.myapplication.adapter.MyAdapter;
-import com.example.dingtu2.myapplication.db.xEntity.DutyAreaEntity;
 import com.example.dingtu2.myapplication.db.xEntity.PatrolEntity;
 import com.example.dingtu2.myapplication.db.xEntity.PatrolPointEntity;
 import com.example.dingtu2.myapplication.db.xEntity.TraceEntity;
@@ -168,7 +164,7 @@ public class MainMapFragment extends Fragment implements OnGetRoutePlanResultLis
 //    private int[] pointButtons = new int[]{R.id.bt_point_draw, R.id.bt_point_coor, R.id.bt_point_gps};
 
     private int[] m_SelectToolsBarItemIdList = {R.id.bt_poly_drawline, R.id.bt_poly_gps, R.id.bt_line_drawline, R.id.bt_line_gps,
-            R.id.bt_point_draw, R.id.bt_point_gps, R.id.btnSelectDraw, R.id.btnStartRound, R.id.btnFullScreen};
+            R.id.bt_point_draw, R.id.bt_point_gps, R.id.btnSelectDraw, R.id.btnStartRound, R.id.btnFullScreen,R.id.btnMoveScreen};
     //    private MapView mBaiduMap;
 //    private BaiduMap mBazidumap;
     private RoutePlanSearch mSearch;
@@ -206,8 +202,8 @@ public class MainMapFragment extends Fragment implements OnGetRoutePlanResultLis
     private List<Coordinate> m_trackList;
     private Map mMap;
     //百度地图导航地址偏差
-    private Double LatitudeY = -0.0016245277777;
-    private Double LongtitudeX = 0.0045826388892;
+    private Double LatitudeY = -0.001618888888;
+    private Double LongtitudeX =0.0046081388892;
     private String mSDCardPath;
     private static final String APP_FOLDER_NAME = "MyBaiduMap";
     private LinearLayout mLLExit;
@@ -228,6 +224,8 @@ public class MainMapFragment extends Fragment implements OnGetRoutePlanResultLis
         }
     };
     private boolean isLocate = false;
+    private boolean isClick = false;
+    private List<LatLng> mResult;
 
 
     private void startDraw() {
@@ -797,14 +795,14 @@ public class MainMapFragment extends Fragment implements OnGetRoutePlanResultLis
 
         //读取工程的上次视图范围，如果没有则全图显示
         Envelope pEnv = _ProjectExplorer.ReadShowExtend();
-        if (pEnv != null) {
-            PubVar.m_MapControl.setActiveTool(com.DingTu.mapcontainer.Tools.FullScreenSize);
-            PubVar.m_Map.setExtend(pEnv);
-//            PubVar.m_Map.Refresh();
-        } else {
-            PubVar.m_MapControl.setActiveTool(com.DingTu.mapcontainer.Tools.FullScreen);
-        }
-
+//        if (pEnv != null) {
+//            PubVar.m_MapControl.setActiveTool(com.DingTu.mapcontainer.Tools.FullScreenSize);
+//            PubVar.m_Map.setExtend(pEnv);
+////            PubVar.m_Map.Refresh();
+//        } else {
+//            PubVar.m_MapControl.setActiveTool(com.DingTu.mapcontainer.Tools.FullScreen);
+//        }
+        PubVar.m_MapControl.setActiveTool(com.DingTu.mapcontainer.Tools.FullScreen);
         PubVar.m_Map.Refresh();
         PubVar.m_MapControl.setActiveTool(ZoomInOutPan);
 
@@ -814,12 +812,15 @@ public class MainMapFragment extends Fragment implements OnGetRoutePlanResultLis
 
     }
 
-    @OnClick({R.id.btnFullScreen, R.id.btnStartRound, R.id.btnSelectDraw, R.id.btnReportAlarm, R.id.btnReportEvent, R.id.btnDraw, R.id.btnFinishRound, R.id.btn_navigate, R.id.btn_beidou, R.id.btn_object, R.id.btn_measure, R.id.btn_search_way, R.id.btn_voice, R.id.btn_clear, R.id.ll_exit})
+    @OnClick({R.id.btnFullScreen, R.id.btnStartRound, R.id.btnSelectDraw, R.id.btnReportAlarm, R.id.btnReportEvent, R.id.btnDraw, R.id.btnFinishRound, R.id.btnMoveScreen,R.id.btn_navigate, R.id.btn_beidou, R.id.btn_object, R.id.btn_measure, R.id.btn_search_way, R.id.btn_voice, R.id.btn_clear, R.id.ll_exit})
     public void clickBtn(View view) {
 
         switch (view.getId()) {
-            case R.id.btnFullScreen:
+            case R.id.btnMoveScreen:
                 PubVar.m_MapControl.setActiveTool(com.DingTu.mapcontainer.Tools.ZoomInOutPan);
+                break;
+            case R.id.btnFullScreen:
+                PubVar.m_MapControl.setActiveTool(com.DingTu.mapcontainer.Tools.FullScreen);
                 break;
             case R.id.btnStartRound:
                 startNormalPatrol();
@@ -906,7 +907,6 @@ public class MainMapFragment extends Fragment implements OnGetRoutePlanResultLis
 //
 //                });
 //                break;
-
             case R.id.btn_navigate:
                 mNavgationLayout.setVisibility(View.VISIBLE);
                 mHorizionRecyclerview.setVisibility(GONE);
@@ -945,10 +945,11 @@ public class MainMapFragment extends Fragment implements OnGetRoutePlanResultLis
                 // 处理搜索按钮响应
                 String startText = mStart.getText().toString().trim();
                 String endText = mEnd.getText().toString().trim();
+                mResult = new ArrayList<LatLng>();
                 if (!TextUtils.isEmpty(startText) && !TextUtils.isEmpty(endText)) {
 
                     if (startText.equals(getResources().getString(R.string.my_location))) {
-                        Log.d("TAG","哈哈");
+                        Log.d("TAG", "哈哈");
 //                        if (PubVar.m_BaiduLocate != null && PubVar.m_BaiduLocate.m_LocationEx != null && PubVar.m_BaiduLocate.m_LocationEx.GetGpsLatitude() > 0.000001 && PubVar.m_BaiduLocate.m_LocationEx.GetGpsLongitude() > 0.000001) {
 //                            stNode = PlanNode.withLocation(new LatLng(PubVar.m_BaiduLocate.m_LocationEx.GetGpsLatitude() + LatitudeY, PubVar.m_BaiduLocate.m_LocationEx.GetGpsLongitude() + LongtitudeX));
 //                        } else if (PubVar.m_GPSLocate != null) {
@@ -959,20 +960,22 @@ public class MainMapFragment extends Fragment implements OnGetRoutePlanResultLis
 //                                }
 //                            }
 //                        }
-                        if(PubVar.m_GPSLocate != null){
+                        if (PubVar.m_GPSLocate != null) {
                             if (PubVar.m_GPSLocate.m_LocationEx != null) {
                                 if (PubVar.m_GPSLocate.m_LocationEx.GetGpsLatitude() > 0.000001 && PubVar.m_GPSLocate.m_LocationEx.GetGpsLongitude() > 0.000001) {
-                                    stNode = PlanNode.withLocation(new LatLng(PubVar.m_GPSLocate.m_LocationEx.GetGpsLatitude() + LatitudeY, PubVar.m_GPSLocate.m_LocationEx.GetGpsLongitude() + LongtitudeX));
+                                    stNode = PlanNode.withLocation(new LatLng(PubVar.m_GPSLocate.m_LocationEx.GetGpsLatitude()+LatitudeY, PubVar.m_GPSLocate.m_LocationEx.GetGpsLongitude()+LongtitudeX));
+                                    mResult.add(new LatLng(PubVar.m_GPSLocate.m_LocationEx.GetGpsLatitude()+LatitudeY, PubVar.m_GPSLocate.m_LocationEx.GetGpsLongitude()+LongtitudeX));
                                     Log.d("TAG", "GPS:" + PubVar.m_GPSLocate.m_LocationEx.GetGpsLatitude() + LatitudeY + "---" + PubVar.m_GPSLocate.m_LocationEx.GetGpsLongitude() + LongtitudeX);
                                 }
-                            }else{
-                                stNode =null;
+                            } else {
+                                stNode = null;
                             }
-                        }else{
-                            stNode =null;
+                        } else {
+                            stNode = null;
                         }
                     } else {
                         stNode = PlanNode.withCityNameAndPlaceName("西安", startText);
+                        mResult.add(stNode.getLocation());
                     }
 
                     if (endText.contains(",")) {
@@ -987,16 +990,18 @@ public class MainMapFragment extends Fragment implements OnGetRoutePlanResultLis
                             mEndLatitude = Coor.getY() + LatitudeY;
                             mEndLontitude = Coor.getX() + LongtitudeX;
                         }
+                        mResult.add(new LatLng(mEndLatitude, mEndLontitude));
                         enNode = PlanNode.withLocation(new LatLng(mEndLatitude, mEndLontitude));
                     } else {
                         enNode = PlanNode.withCityNameAndPlaceName("西安", endText);
+                        mResult.add(enNode.getLocation());
                     }
                     if (stNode != null && enNode != null) {
                         mSearch.drivingSearch((new DrivingRoutePlanOption())
                                 .from(stNode).to(enNode).policy(DrivingRoutePlanOption.DrivingPolicy.ECAR_DIS_FIRST)
                                 .trafficPolicy(DrivingRoutePlanOption.DrivingTrafficPolicy.ROUTE_PATH_AND_TRAFFIC));
                         nowSearchType = 1;
-                    }else{
+                    } else {
                         Toast.makeText(getActivity(), "起点或者终点未定位!", Toast.LENGTH_SHORT).show();
                     }
                 } else {
@@ -1438,14 +1443,14 @@ public class MainMapFragment extends Fragment implements OnGetRoutePlanResultLis
 
 
             if (PubVar.m_GPSLocate != null && PubVar.m_GPSLocate.m_LocationEx != null && PubVar.m_GPSLocate.m_LocationEx.GetGpsLatitude() > 0.000001 && PubVar.m_GPSLocate.m_LocationEx.GetGpsLongitude() > 0.000001) {
-                isLocate=true;
+                isLocate = true;
 
                 ((TextView) layout.findViewById(R.id.tvLon)).setText(Tools.ConvertToDigi(PubVar.m_GPSLocate.m_LocationEx.GetGpsLongitude() + "", 7));
                 ((TextView) layout.findViewById(R.id.tvLat)).setText(Tools.ConvertToDigi(PubVar.m_GPSLocate.m_LocationEx.GetGpsLatitude() + "", 7));
                 ((TextView) layout.findViewById(R.id.tvHigh)).setText(PubVar.m_GPSLocate.m_LocationEx.GetGpsAltitude() + "");
 
             } else {
-                isLocate=false;
+                isLocate = false;
                 layout.findViewById(R.id.layoutNoLocation).setVisibility(View.VISIBLE);
                 layout.findViewById(R.id.layoutLocation).setVisibility(GONE);
             }
@@ -2082,9 +2087,8 @@ public class MainMapFragment extends Fragment implements OnGetRoutePlanResultLis
                 mRouteLineAdapter.updata(result.getRouteLines());
                 scrollHelper.scrollToPosition(0);
                 mDrivingRouteLine = result.getRouteLines();
-
                 DriverRouteData data = new DriverRouteData();
-                data.setData(result.getRouteLines().get(0));
+                data.setData(result.getRouteLines().get(0), mResult);
                 PubVar.mBaseLine.UpdateData(data.getData());
                 PubVar.mBaseLine.startCanvas();
             } else {
@@ -2136,7 +2140,7 @@ public class MainMapFragment extends Fragment implements OnGetRoutePlanResultLis
     public void onPageChange(int index) {
         if (mDrivingRouteLine != null && mDrivingRouteLine.size() > 0) {
             DriverRouteData data = new DriverRouteData();
-            data.setData(mDrivingRouteLine.get(index));
+            data.setData(mDrivingRouteLine.get(index), mResult);
             PubVar.mBaseLine.UpdateData(data.getData());
             PubVar.mBaseLine.startCanvas();
         }

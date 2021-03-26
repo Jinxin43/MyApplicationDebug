@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity
             R.id.bt_point_draw, R.id.bt_point_gps, R.id.btnSelectDraw, R.id.btnStartRound};
     String[] permissions = new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
             android.Manifest.permission.READ_EXTERNAL_STORAGE,
-            android.Manifest.permission.READ_PHONE_STATE, android.Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.CAMERA,Manifest.permission.RECORD_AUDIO};
+            android.Manifest.permission.READ_PHONE_STATE, android.Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO};
     List<String> mPermissionList = new ArrayList<>();
     private String mTrackId;
     private android.app.AlertDialog mDialog;
@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity
             return false;
         }
     };
-    private boolean isLocate=false;
+    private boolean isLocate = false;
 
 
     @Override
@@ -547,7 +547,7 @@ public class MainActivity extends AppCompatActivity
                                     patrolPointEntity.setUserID(AppSetting.curUser.getUserID());
                                     patrolPointEntity.setRoundID(AppSetting.curRound.getId());
                                     patrolPointEntity.setLatitude(location.GetGpsAltitude());
-                                    if(location.GetGpsLongitude()!=0&&location.GetGpsAltitude()!=0) {
+                                    if (location.GetGpsLongitude() != 0 && location.GetGpsAltitude() != 0) {
                                         patrolPointEntity.setLongitude(location.GetGpsLongitude());
                                         patrolPointEntity.setHeight(location.GetGpsAltitude());
                                     }
@@ -591,7 +591,7 @@ public class MainActivity extends AppCompatActivity
                                     HttpTraceModel httpTraceModel = new HttpTraceModel();
                                     httpTraceModel.setUserId(traceEntity.getUserID());
                                     httpTraceModel.setRoundId(AppSetting.curRound.getServerId());
-                                    if(traceEntity.getLatitude()!=0&&traceEntity.getLongitude()!=0) {
+                                    if (traceEntity.getLatitude() != 0 && traceEntity.getLongitude() != 0) {
                                         httpTraceModel.setLatitude(traceEntity.getLatitude() + "");
                                         httpTraceModel.setLongitude(traceEntity.getLongitude() + "");
                                     }
@@ -1003,14 +1003,14 @@ public class MainActivity extends AppCompatActivity
 
         //读取工程的上次视图范围，如果没有则全图显示
         Envelope pEnv = _ProjectExplorer.ReadShowExtend();
-        if (pEnv != null) {
-            PubVar.m_MapControl.setActiveTool(com.DingTu.mapcontainer.Tools.FullScreenSize);
-            PubVar.m_Map.setExtend(pEnv);
-//            PubVar.m_Map.Refresh();
-        } else {
-            PubVar.m_MapControl.setActiveTool(com.DingTu.mapcontainer.Tools.FullScreen);
-        }
-
+//        if (pEnv != null) {
+//            PubVar.m_MapControl.setActiveTool(com.DingTu.mapcontainer.Tools.FullScreenSize);
+//            PubVar.m_Map.setExtend(pEnv);
+////            PubVar.m_Map.Refresh();
+//        } else {
+//            PubVar.m_MapControl.setActiveTool(com.DingTu.mapcontainer.Tools.FullScreen);
+//        }
+        PubVar.m_MapControl.setActiveTool(com.DingTu.mapcontainer.Tools.FullScreen);
         PubVar.m_Map.Refresh();
         PubVar.m_MapControl.setActiveTool(ZoomInOutPan);
 
@@ -1201,7 +1201,7 @@ public class MainActivity extends AppCompatActivity
         roundWeatherAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spRoundWeather.setAdapter(roundWeatherAdapter);
         if (PubVar.m_GPSLocate != null && PubVar.m_GPSLocate.m_LocationEx != null && PubVar.m_GPSLocate.m_LocationEx.GetGpsLatitude() > 0.000001 && PubVar.m_GPSLocate.m_LocationEx.GetGpsLongitude() > 0.000001) {
-           isLocate=true;
+            isLocate = true;
             try {
                 ((TextView) layout.findViewById(R.id.tvLon)).setText(Tools.ConvertToDigi(PubVar.m_GPSLocate.m_LocationEx.GetGpsLongitude() + "", 7));
                 ((TextView) layout.findViewById(R.id.tvLat)).setText(Tools.ConvertToDigi(PubVar.m_GPSLocate.m_LocationEx.GetGpsLatitude() + "", 7));
@@ -1209,7 +1209,7 @@ public class MainActivity extends AppCompatActivity
             } catch (Exception ex) {
             }
         } else {
-            isLocate=false;
+            isLocate = false;
             layout.findViewById(R.id.layoutNoLocation).setVisibility(View.VISIBLE);
             layout.findViewById(R.id.layoutLocation).setVisibility(View.GONE);
         }
@@ -1218,90 +1218,90 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                   if(isLocate) {
+                if (isLocate) {
 
-                       try {
-                           PatrolEntity roundEntity = new PatrolEntity();
-                           SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-                           String date = sDateFormat.format(new Date());
-                           String userId = AppSetting.curUserKey;
-                           roundEntity.setUserID(userId);
-                           String id = userId + date.toString();
-                           roundEntity.setId(id);
-                           roundEntity.setStartTime(new Date());
-                           roundEntity.setRoundName(((TextView) ((AlertDialog) dialog).findViewById(R.id.etRoundName)).getText() + "");
-                           roundEntity.setUserNames(((TextView) ((AlertDialog) dialog).findViewById(R.id.etXunHuYuan)).getText() + "");
-                           roundEntity.setRoundStatus(0);
-                           roundEntity.setWeather(spRoundWeather.getSelectedItem().toString());
-                           String strRoundType = spRoundType.getSelectedItem().toString();
-                           if (strRoundType.equals("常规巡护")) {
-                               roundEntity.setRoundType(21);
-                           } else if (strRoundType.equals("稽查巡护")) {
-                               roundEntity.setRoundType(22);
-                           } else if (strRoundType.equals("责任区巡护")) {
-                               roundEntity.setRoundType(23);
-                           } else {
-                               roundEntity.setRoundType(1);
-                           }
+                    try {
+                        PatrolEntity roundEntity = new PatrolEntity();
+                        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+                        String date = sDateFormat.format(new Date());
+                        String userId = AppSetting.curUserKey;
+                        roundEntity.setUserID(userId);
+                        String id = userId + date.toString();
+                        roundEntity.setId(id);
+                        roundEntity.setStartTime(new Date());
+                        roundEntity.setRoundName(((TextView) ((AlertDialog) dialog).findViewById(R.id.etRoundName)).getText() + "");
+                        roundEntity.setUserNames(((TextView) ((AlertDialog) dialog).findViewById(R.id.etXunHuYuan)).getText() + "");
+                        roundEntity.setRoundStatus(0);
+                        roundEntity.setWeather(spRoundWeather.getSelectedItem().toString());
+                        String strRoundType = spRoundType.getSelectedItem().toString();
+                        if (strRoundType.equals("常规巡护")) {
+                            roundEntity.setRoundType(21);
+                        } else if (strRoundType.equals("稽查巡护")) {
+                            roundEntity.setRoundType(22);
+                        } else if (strRoundType.equals("责任区巡护")) {
+                            roundEntity.setRoundType(23);
+                        } else {
+                            roundEntity.setRoundType(1);
+                        }
 
 
-                           if (((AlertDialog) dialog).findViewById(R.id.layoutLocation).getVisibility() == View.VISIBLE) {
-                               double longitude = Double.valueOf(((TextView) ((AlertDialog) dialog).findViewById(R.id.tvLon)).getText().toString());
-                               double latitude = Double.valueOf(((TextView) ((AlertDialog) dialog).findViewById(R.id.tvLat)).getText().toString());
-                               double altitude = Double.valueOf(((TextView) ((AlertDialog) dialog).findViewById(R.id.tvHigh)).getText().toString());
-                               PatrolPointEntity patrolPointEntity = new PatrolPointEntity();
-                               patrolPointEntity.setUserID(AppSetting.curUser.getUserID());
-                               patrolPointEntity.setRoundID(AppSetting.curRound.getId());
-                               patrolPointEntity.setLatitude(latitude);
-                               patrolPointEntity.setLongitude(longitude);
-                               patrolPointEntity.setHeight(altitude);
-                               patrolPointEntity.setGpsTime(new Date());
-                               Coordinate coordinate = StaticObject.soProjectSystem.WGS84ToXY(longitude, latitude, altitude);
-                               NumberFormat nf = NumberFormat.getInstance();
-                               nf.setGroupingUsed(false);
-                               patrolPointEntity.setX(nf.format(coordinate.getX()));
-                               patrolPointEntity.setY(nf.format(coordinate.getY()));
-                               String name = StaticObject.soProjectSystem.GetCoorSystem().GetName();
-                               if (name.equals("西安80坐标")) {
-                                   patrolPointEntity.setSrid("2381");
-                               } else if (name.equals("北京54坐标")) {
-                                   patrolPointEntity.setSrid("2433");
-                               } else if (name.equals("2000国家大地坐标系")) {
-                                   patrolPointEntity.setSrid("4545");
-                               } else if (name.equals("WGS-84坐标")) {
-                                   patrolPointEntity.setSrid("4326");
-                               }
-                               patrolPointEntity.setPointType("0");
-                               roundEntity.setStartPoint(patrolPointEntity);
-                           }
+                        if (((AlertDialog) dialog).findViewById(R.id.layoutLocation).getVisibility() == View.VISIBLE) {
+                            double longitude = Double.valueOf(((TextView) ((AlertDialog) dialog).findViewById(R.id.tvLon)).getText().toString());
+                            double latitude = Double.valueOf(((TextView) ((AlertDialog) dialog).findViewById(R.id.tvLat)).getText().toString());
+                            double altitude = Double.valueOf(((TextView) ((AlertDialog) dialog).findViewById(R.id.tvHigh)).getText().toString());
+                            PatrolPointEntity patrolPointEntity = new PatrolPointEntity();
+                            patrolPointEntity.setUserID(AppSetting.curUser.getUserID());
+                            patrolPointEntity.setRoundID(AppSetting.curRound.getId());
+                            patrolPointEntity.setLatitude(latitude);
+                            patrolPointEntity.setLongitude(longitude);
+                            patrolPointEntity.setHeight(altitude);
+                            patrolPointEntity.setGpsTime(new Date());
+                            Coordinate coordinate = StaticObject.soProjectSystem.WGS84ToXY(longitude, latitude, altitude);
+                            NumberFormat nf = NumberFormat.getInstance();
+                            nf.setGroupingUsed(false);
+                            patrolPointEntity.setX(nf.format(coordinate.getX()));
+                            patrolPointEntity.setY(nf.format(coordinate.getY()));
+                            String name = StaticObject.soProjectSystem.GetCoorSystem().GetName();
+                            if (name.equals("西安80坐标")) {
+                                patrolPointEntity.setSrid("2381");
+                            } else if (name.equals("北京54坐标")) {
+                                patrolPointEntity.setSrid("2433");
+                            } else if (name.equals("2000国家大地坐标系")) {
+                                patrolPointEntity.setSrid("4545");
+                            } else if (name.equals("WGS-84坐标")) {
+                                patrolPointEntity.setSrid("4326");
+                            }
+                            patrolPointEntity.setPointType("0");
+                            roundEntity.setStartPoint(patrolPointEntity);
+                        }
 
-                           PatrolManager.getInstance().savePatrol(roundEntity);
-                           SharedPreferencesUtils.putBoolean(getApplicationContext(), "mIsRounding", true);
-                           AppSetting.curRound = roundEntity;
-                           PubVar.m_DoEvent.mRoundLinePresenter.Start(lkDataCollectType.enGps_T, AppSetting.curRound.getStartTime());
+                        PatrolManager.getInstance().savePatrol(roundEntity);
+                        SharedPreferencesUtils.putBoolean(getApplicationContext(), "mIsRounding", true);
+                        AppSetting.curRound = roundEntity;
+                        PubVar.m_DoEvent.mRoundLinePresenter.Start(lkDataCollectType.enGps_T, AppSetting.curRound.getStartTime());
 
-                            initRounding();
+                        initRounding();
 
-                           UploadMananger.getInstance().uploadRound(roundEntity, new ICallback() {
-                               @Override
-                               public void OnClick(String Str, Object ExtraStr) {
-                                   if (Str.equals("success")) {
-                                       saveStartPoint(AppSetting.curRound, true);
-                                       Toast.makeText(MainActivity.this.getBaseContext(), "上传成功", Toast.LENGTH_SHORT);
-                                   } else {
-                                       saveStartPoint(AppSetting.curRound, false);
-                                       Toast.makeText(MainActivity.this.getBaseContext(), "上传失败", Toast.LENGTH_SHORT);
-                                   }
-                               }
-                           });
-                           dialog.dismiss();
-                       } catch (Exception ex) {
-                           Toast.makeText(MainActivity.this.getBaseContext(), ex.getMessage(), Toast.LENGTH_SHORT);
-                           //TODO:log error info to database
-                       }
-                   }else{
-                       Tools.ShowMessageBox("请定位成功后，开始巡护！");
-                   }
+                        UploadMananger.getInstance().uploadRound(roundEntity, new ICallback() {
+                            @Override
+                            public void OnClick(String Str, Object ExtraStr) {
+                                if (Str.equals("success")) {
+                                    saveStartPoint(AppSetting.curRound, true);
+                                    Toast.makeText(MainActivity.this.getBaseContext(), "上传成功", Toast.LENGTH_SHORT);
+                                } else {
+                                    saveStartPoint(AppSetting.curRound, false);
+                                    Toast.makeText(MainActivity.this.getBaseContext(), "上传失败", Toast.LENGTH_SHORT);
+                                }
+                            }
+                        });
+                        dialog.dismiss();
+                    } catch (Exception ex) {
+                        Toast.makeText(MainActivity.this.getBaseContext(), ex.getMessage(), Toast.LENGTH_SHORT);
+                        //TODO:log error info to database
+                    }
+                } else {
+                    Tools.ShowMessageBox("请定位成功后，开始巡护！");
+                }
             }
         });
 
